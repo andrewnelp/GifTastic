@@ -6,6 +6,16 @@ body {
   text-align: center;
 }
 
-/* #cars-viewbtn:hover {
-  opacity: 0.3;
-} */
+
+.truncated { 
+  display:block; 
+  max-width:200px; 
+  overflow:hidden; 
+  text-overflow:ellipsis; 
+  white-space:nowrap; 
+}
+
+label {
+  font-size: 14px;
+  float:left;
+}

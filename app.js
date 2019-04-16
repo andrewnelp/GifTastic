@@ -7,9 +7,6 @@ $(function(){
 
     var cars = $(this).attr("data-name");
 
-    //ADD DATA ATTR TO +CARS IN THE SEARCH OTHERWISE JAGUAR IS SHOWING CATS
-    //look to task 15 unsolved and see how to create still and animated images
-    //<img src="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-still="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-animate="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif" data-state="still" class="gif">
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + cars + "&api_key=Wa2AdCO6cHGtHNULqRHDcKFm4pSgr85Q&limit=10";
     $('#cars-view').empty();
     // Creating an AJAX call for the specific brand button being clicked
@@ -25,19 +22,23 @@ $(function(){
         //find out how to slice the title a bit
         var gifTitle = $('<h5>').text(response.data[i].title);
         var gifRating = $('<p>').text('Rating: ' + response.data[i].rating);
-        //see w3 attributes how to add a height or width here <img src="img_girl.jpg" width="500" height="600">
-        //or do fixed width in css?
+
+        //adding FAVOURITE chackbox
+
         var img = $('<img></img>').attr('src', response.data[i].images.fixed_height_still.url)
           .attr('data-still', response.data[i].images.fixed_height_still.url)
           .attr('data-animate', response.data[i].images.fixed_height_downsampled.url )
           .attr('data-state', 'still')
           .attr('class', 'gif');
-          
-        // $('<img>').append('data-state="still"');
-        //add also attr alt <img src="img_typo.jpg" alt="Girl with a jacket">
+
+          //adding titles
         $(gifDiv).append(gifTitle, img, gifRating);
+        
+        
         $('#cars-view').prepend(gifDiv);
         console.log(response.data[i].title)
+        
+
       }
       // function to pause images
       $('.gif').on('click', function () {
@@ -74,7 +75,7 @@ $(function(){
         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
         var a = $("<button>");
         // Adding a class of movie-btn to our button
-        a.addClass("car-btn mx-1 p-1 shadow px-2 mb-5 bg-white rounded text-secondary");
+        a.addClass("car-btn mx-2 my-5 p-1 shadow px-2 mb-5 bg-white rounded text-secondary");
         // Adding a data-attribute
         a.attr("data-name", brands[i] + "+car");
         // a.attr('data-state', 'still');
@@ -84,7 +85,7 @@ $(function(){
         $("#cars-viewbtn").append(a);
         
       }
-      // $("#cars-viewbtn").fadeOut(250).fadeIn(250);
+      $("#cars-viewbtn").fadeOut(250).fadeIn(250);
     }
 
     // This function handles events where a car button is clicked
@@ -95,7 +96,6 @@ $(function(){
 
       // Adding movie from the textbox to our array
       brands.push(carBrand);
-    $(this).fadeOut(250).fadeIn(250);
 
       // Calling renderButtons which handles the processing of our movie array
       renderButtons();

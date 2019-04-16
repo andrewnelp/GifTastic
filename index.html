@@ -20,24 +20,30 @@
 
   <div class="container mt-3 border rounded">
     <div class="row justify-content-center mt-3 text-info">
-      <h1 bg-danger><i class="fas fa-car"></i> Get Your Car Brand Gif</h1>
-    </div>
-    <div class="row">
-      <div class="col-12 col-lg-9 ">
-        <div id='cars-viewbtn' class="#"></div>
+      <div class="col-8">
+        <h1 bg-danger><i class="fas fa-car"></i> Get Your Car Brand Gif</h1>
       </div>
-      <div id=gifSearch class="col-12 col-lg-3">
+    </div>
+
+    <div class="row">
+      <div class="col-8 col-lg-9 ">
+        <div id='cars-viewbtn' class="bg-light"></div>
+      </div>
+      <div id=gifSearch class="col-8 col-lg-3 text-center bg-light py-3">
         <form id="cars-form">
           <label for="cars-input" id='addCarBrand'><h5>Add a Car Brand<i class="fab fa-angellist"></i></h5></i></label>
           <br>
-          <input  type="text" id="cars-input"><input id="add-car" type="submit" class='px-1 mb-1 bg-white rounded' value="Go, Yo!" >
+          <input  type="text" id="cars-input"><input id="add-car" type="submit" class='px-1 mb-1 bg-white rounded text-center' value="Go, Yo!" >
           <br>
           <!-- Button triggers new car to be added -->
         </form>
       </div>
     </div>
-    <div id='cars-view' class="row justify-content-between mt-3">
-      
+    <div  class="row m-3">
+      <h2 id='favorites'> Favs Gifs =>>>  </h2>
+    </div>
+    <div id='cars-view' class="row justify-content-center mt-3">
+     
     </div>
     
 
@@ -56,7 +62,8 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <script type="text/javascript" src="app.js"></script>
+  <!-- <script type="text/javascript" src="app.js"></script> -->
+  <script type="text/javascript" src="appFav.js"></script>
 </body>
 
 </html>
