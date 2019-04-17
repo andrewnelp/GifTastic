@@ -23,12 +23,12 @@ $(function () {
         gifTitle.addClass('truncated');
         var gifRating = $('<p>').text('Rating: ' + response.data[i].rating);
 
-        //adding FAVOURITE chackbox
+        //adding FAVOURITE checkbox
         var checkbox = document.createElement('input');
         checkbox.type = "checkbox";
         checkbox.name = "favs" + i;
         checkbox.value = "value";
-        checkbox.id = "checkBox";
+        // checkbox.id = "checkBox";
 
         var label = document.createElement('label')
         label.htmlFor = "checkBox";
@@ -40,7 +40,8 @@ $(function () {
           .attr('data-still', response.data[i].images.fixed_height_still.url)
           .attr('data-animate', response.data[i].images.fixed_height_downsampled.url)
           .attr('data-state', 'still')
-          .attr('class', 'gif');
+          .attr('id', i).attr('class', 'gif')
+          .attr('data-thumb', response.data[i].images.fixed_width_small.url );
 
         //adding titles
         $(gifDiv).append(gifTitle, img, gifRating);
@@ -50,25 +51,14 @@ $(function () {
         $('#cars-view').prepend(gifDiv);
         console.log(response.data[i].title)
 
-        // checking if box is checked and sending img to fav place
-        $('input[type=checkbox]').on('click', function() {
-          var checked = $(this).is(":checked");
-          // checked.each(function(){
-          if (checked) {
-            //create favs section in html
-            //grab an image and append/copy it to favs
-            alert('checked');
-            
-            $('#favorites').append($('.gif'));
-          }
-        })
-      
 
       // function to pause images
       $('.gif').on('click', function () {
         var state = $(this).attr('data-state');
         var animate = $(this).attr('data-animate');
         var still = $(this).attr('data-still');
+        var thumb = $(this).attr('data-thumb');
+        var addImg = $(this).attr('value', 'toAdd')
 
         // =============================================
 
@@ -80,8 +70,27 @@ $(function () {
           $(this).attr('src', still);
           $(this).attr('data-state', 'still');
         }
+        // USE A DYNAMIC NAME INSTEAD OF TYPE=CHECKBOX
+        //CREATE ABOVE A DYNAMIC NAME FOR THE IMAGE AND USE IT HERE
+
+        // checking if box is checked and sending img to fav place
+        $('input[type=checkbox]').on('click', function () {
+          var checked = $(this).is(":checked");
+          // checked.each(function(){
+          if (checked) {
+            //create favs section in html
+            //grab an image and append/copy it to favs
+            // alert('checked');
+
+            $('#favorites').append($(addImg).attr('src', thumb).attr('class', 'shadow p-1 mb-3 bg-white rounded'));
+            // $('.carGif').attr('class', 'd-none');
+          }
+        })
       })
+
+        
     }
+     
     });
   }
   // Function for displaying cars data
