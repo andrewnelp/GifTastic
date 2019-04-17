@@ -7,4 +7,5 @@ Cars Gifs generating app
 4. Gifs titles are truncated 
 5. Added Favorite gifs  - working only after you click on the gif and see it animated. Then you click add to Favs and it's added
 6. Favs givs do have seom flows - it does not remove the title and rating and also if you clicked an other gif before it is added to favs also
-7. the styling of fav gifs also lacks 
+7. the styling of fav gifs restricted to 50px height
+8. after adding fav givs DELETE ALL button appears to delete favs gifs

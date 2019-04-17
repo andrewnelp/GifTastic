@@ -18,3 +18,12 @@ body {
 label {
   font-size: 14px;
 }
+
+.gifnew {
+  max-height: 100px;
+}
+
+#delete {
+  max-height: 30px;
+  display: none;
+}

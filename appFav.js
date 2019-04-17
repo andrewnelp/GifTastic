@@ -84,11 +84,9 @@ $(function () {
         $('input[type=checkbox]').on('click', function () {
           var checked = $(this).is(":checked");
           if (checked) {
+            $('#delete').css('display', 'block');
+            $(this).parent().remove();
             $('#favorites').append($(addImg).attr('src', thumb).attr('class', 'shadow p-1 mb-3 bg-white rounded gifnew'));
-
-            //below does not remove the title div....
-            $('#' + numberFav).empty();
-            console.log(numberFav);
           }
         })
        
@@ -148,7 +146,7 @@ $(function () {
 
   // deleting all the fav gifs
   $('#delete').on('click', function () {
-    alert('button clicked')
+    
     $('.gifnew').remove();
   })
 })
