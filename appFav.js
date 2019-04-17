@@ -57,6 +57,7 @@ $(function () {
         var state = $(this).attr('data-state');
         var animate = $(this).attr('data-animate');
         var still = $(this).attr('data-still');
+        //added thumb and addImg var to handle favorites div
         var thumb = $(this).attr('data-thumb');
         var addImg = $(this).attr('value', 'toAdd')
 
@@ -70,21 +71,20 @@ $(function () {
           $(this).attr('src', still);
           $(this).attr('data-state', 'still');
         }
-        // USE A DYNAMIC NAME INSTEAD OF TYPE=CHECKBOX
-        //CREATE ABOVE A DYNAMIC NAME FOR THE IMAGE AND USE IT HERE
 
         // checking if box is checked and sending img to fav place
         $('input[type=checkbox]').on('click', function () {
           var checked = $(this).is(":checked");
           // checked.each(function(){
           if (checked) {
-            //create favs section in html
-            //grab an image and append/copy it to favs
-            // alert('checked');
-
-            $('#favorites').append($(addImg).attr('src', thumb).attr('class', 'shadow p-1 mb-3 bg-white rounded'));
+            $('#favorites').append($(addImg).attr('src', thumb).attr('class', 'shadow p-1 mb-3 bg-white rounded gifnew'));
             // $('.carGif').attr('class', 'd-none');
           }
+        })
+        // deleting all the fav gifs
+        $('#delete').on('click', function () {
+          alert('button clicked')
+          $('.gifnew').empty();
         })
       })
 
@@ -127,15 +127,16 @@ $(function () {
     // This line grabs the input from the textbox
     var carBrand = $("#cars-input").val().trim();
 
-    // Adding movie from the textbox to our array
+    // Adding car from the textbox to our array
     brands.push(carBrand);
 
-    // Calling renderButtons which handles the processing of our movie array
+    // Calling renderButtons which handles the processing of our car array
     renderButtons();
     // displayCarsInfo(carBrand);
   });
 
-  // Adding a click event listener to all elements with a class of "movie-btn"
+  
+  // Adding a click event listener to all elements with a class of "car-btn"
   $(document).on("click", ".car-btn", displayCarsInfo);
 
   // Calling the renderButtons function to display the intial buttons
