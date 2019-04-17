@@ -1,6 +1,8 @@
 $(function () {
   // Initial array of cars
   var brands = ["BMW", "Mercedes", "Audi"];
+  var numberFav;
+  console.log(numberFav)
 
   // displayCarsInfo function re-renders the HTML to display the appropriate content
   function displayCarsInfo() {
@@ -18,6 +20,12 @@ $(function () {
       //add here an if statement to filter rating images? if(resultes[i].rating !== 'g' && ....!== 'pg-13')
       for (var i = 0; i < response.data.length; i++) {
         var gifDiv = $('<div>');
+
+        //adding data-fav in order to deal with deleting it later when added img to favs
+        gifDiv.attr('id', i);
+        numberFav = gifDiv.attr('id');
+        // console.log(numberFav);
+
         gifDiv.addClass('carGif m-1 shadow p-3 mb-5 bg-white rounded')
         var gifTitle = $('<h5>').text(response.data[i].title);
         gifTitle.addClass('truncated');
@@ -75,20 +83,16 @@ $(function () {
         // checking if box is checked and sending img to fav place
         $('input[type=checkbox]').on('click', function () {
           var checked = $(this).is(":checked");
-          // checked.each(function(){
           if (checked) {
             $('#favorites').append($(addImg).attr('src', thumb).attr('class', 'shadow p-1 mb-3 bg-white rounded gifnew'));
-            // $('.carGif').attr('class', 'd-none');
+
+            //below does not remove the title div....
+            $('#' + numberFav).empty();
+            console.log(numberFav);
           }
         })
-        // deleting all the fav gifs
-        $('#delete').on('click', function () {
-          alert('button clicked')
-          $('.gifnew').empty();
-        })
+       
       })
-
-        
     }
      
     });
@@ -142,5 +146,9 @@ $(function () {
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
 
-
+  // deleting all the fav gifs
+  $('#delete').on('click', function () {
+    alert('button clicked')
+    $('.gifnew').remove();
+  })
 })
