@@ -1,9 +1,9 @@
 $(function () {
   // Initial array of cars
   var brands = ["BMW", "Mercedes", "Audi"];
-  var numberFav;
-  console.log(numberFav)
-
+  
+  var addedGif;
+  console.log(addedGif)
   // displayCarsInfo function re-renders the HTML to display the appropriate content
   function displayCarsInfo() {
 
@@ -19,6 +19,7 @@ $(function () {
       console.log(queryURL);
       //add here an if statement to filter rating images? if(resultes[i].rating !== 'g' && ....!== 'pg-13')
       for (var i = 0; i < response.data.length; i++) {
+      
         var gifDiv = $('<div>');
 
         //adding data-fav in order to deal with deleting it later when added img to favs
@@ -57,7 +58,7 @@ $(function () {
         $(gifDiv).append(label);
 
         $('#cars-view').prepend(gifDiv);
-        console.log(response.data[i].title)
+        // console.log(response.data[i].title)
 
 
       // function to pause images
@@ -86,7 +87,9 @@ $(function () {
           if (checked) {
             $('#delete').css('display', 'block');
             $(this).parent().remove();
-            $('#favorites').append($(addImg).attr('src', thumb).attr('class', 'shadow p-1 mb-3 bg-white rounded gifnew'));
+            addedGif = $(addImg).attr('src', thumb).attr('class', 'shadow p-1 mb-3 bg-white rounded gifnew')
+
+            $('#favorites').append(addedGif);
           }
         })
        
@@ -103,7 +106,7 @@ $(function () {
     $("#cars-viewbtn").empty();
 
 
-    // Looping through the array of movies
+    // Looping through the array of cars
     for (var i = 0; i < brands.length; i++) {
 
       // Then dynamicaly generating buttons for each movie in the array
@@ -145,8 +148,16 @@ $(function () {
   renderButtons();
 
   // deleting all the fav gifs
-  $('#delete').on('click', function () {
-    
+  $('#delete').on('click', function() {
+    // event.preventDefault(); 
     $('.gifnew').remove();
+    $(this).css('display', 'none');
   })
+
+  //function to increase/decrease a favourite image -   DOES NOT WORK YET
+  // $('img.gifnew').on('click', function () {
+  //   // $(this).toggle();
+  //   alert('clicked');
+  // })
+  
 })
