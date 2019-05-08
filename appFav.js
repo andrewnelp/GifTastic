@@ -17,6 +17,7 @@ $(function () {
       method: "GET"
     }).then(function (response) {
       console.log(queryURL);
+      console.log(response);
       //add here an if statement to filter rating images? if(resultes[i].rating !== 'g' && ....!== 'pg-13')
       for (var i = 0; i < response.data.length; i++) {
       
